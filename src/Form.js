@@ -7,6 +7,7 @@ const Form = () => {
     const[completed,setCompleted]=useState();
     const[taskArray,setArray]=useState([]);
     const[errorShow,setError]=useState(false);
+   
 
     const getTaskname=(e)=>{
         console.log("tasktname",e.target.value)
@@ -22,16 +23,18 @@ const Form = () => {
     }
     const handlesubmit=(e)=>{
         e.preventDefault();
+        
         setError(true);
         if(taskName==="" || description==="")return;
-        
+       
         console.log(taskName,description,completed)
        pusharr();
-       //console.log(taskArray)
+       
+       
     }
     const pusharr=()=>{
-        setArray([...taskArray, taskName,description,completed]);
-        
+        setArray([...taskArray, {name:taskName,des:description,iscomplete:completed}]);
+        //console.log(taskArray)
     }
     
     // let taskArray=[];
@@ -49,6 +52,7 @@ const Form = () => {
     // taskarr();
 
   return (
+    
     <div>
 
         <form onSubmit={handlesubmit}>
@@ -63,8 +67,13 @@ const Form = () => {
             <input type="submit"/>
         </form>
         <ul>list of task:
-            {taskArray.map((item,index)=>(
+            {/* {taskArray.map((item,index)=>(
                 <li key={index}>{item}</li>
+               
+            ))} */}
+            {taskArray.map((item,index)=>(
+                <li key={index}>TaskName:{item.name} Description:{item.des} isCompleted:{item.iscomplete}</li>
+               
                
             ))}
         </ul>
