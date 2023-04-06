@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Form from './Form';
+//import Form from './Form';
 import './index.css';
+import Routing from './Routing';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Form/>
+  //<Form/>
+  <Routing/>
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>

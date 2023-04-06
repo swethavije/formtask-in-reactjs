@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
 
@@ -33,10 +34,13 @@ const Form = () => {
        
     }
     const pusharr=()=>{
-        setArray([...taskArray, {name:taskName,des:description,iscomplete:completed}]);
+        setArray([...taskArray, { id:Math.floor(Math.random()*10),name:taskName,des:description,iscomplete:completed}]);
         //console.log(taskArray)
     }
+    localStorage.setItem('taskArray', JSON.stringify(taskArray));
+
     
+   
     // let taskArray=[];
     // const pusharr=()=>{
     //    taskArray.push(taskName,description,completed)
@@ -50,6 +54,13 @@ const Form = () => {
     //     console.log(task)
     // }
     // taskarr();
+    // const displayArray = JSON.stringify(taskArray);
+    // localStorage.setItem('taskArray', displayArray);
+    //go to home function
+    let navigate=useNavigate();
+    const gotohome=()=>{
+       navigate("/Home")
+    }
 
   return (
     
@@ -66,17 +77,16 @@ const Form = () => {
             <input type="checkbox" onChange={getCompleted}/>
             <input type="submit"/>
         </form>
-        <ul>list of task:
-            {/* {taskArray.map((item,index)=>(
-                <li key={index}>{item}</li>
-               
-            ))} */}
+        <div>
+            <button onClick={()=>gotohome()}>HOME</button>
+        </div>
+        {/* <ul>list of task:
             {taskArray.map((item,index)=>(
                 <li key={index}>TaskName:{item.name} Description:{item.des} isCompleted:{item.iscomplete}</li>
                
                
             ))}
-        </ul>
+        </ul> */}
         
        
          
