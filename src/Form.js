@@ -30,30 +30,25 @@ const Form = () => {
        
         console.log(taskName,description,completed)
        pusharr();
-       
+       console.log(taskArray)
+       const data=JSON.parse(localStorage.getItem('taskArray'))
+       if(data===null||undefined){
+        localStorage.setItem("taskArray",JSON.stringify(taskArray))
+       }else{
+        const temp = [...data,{name:taskName,des:description,iscomplete:completed}]
+        localStorage.setItem("taskArray",JSON.stringify(temp))
+       }
        
     }
     const pusharr=()=>{
-        setArray([...taskArray, { id:Math.floor(Math.random()*10),name:taskName,des:description,iscomplete:completed}]);
+        setArray([...taskArray, {name:taskName,des:description,iscomplete:completed}]);
         //console.log(taskArray)
     }
-    localStorage.setItem('taskArray', JSON.stringify(taskArray));
+     //localStorage.setItem('taskArray', JSON.stringify(taskArray));
 
     
    
-    // let taskArray=[];
-    // const pusharr=()=>{
-    //    taskArray.push(taskName,description,completed)
-    //    console.log(taskArray)
-    // }
    
-    
-    // let task
-    // const taskarr=()=>{
-    //     task.push(taskName,description,completed)
-    //     console.log(task)
-    // }
-    // taskarr();
     // const displayArray = JSON.stringify(taskArray);
     // localStorage.setItem('taskArray', displayArray);
     //go to home function
@@ -80,19 +75,13 @@ const Form = () => {
         <div>
             <button onClick={()=>gotohome()}>HOME</button>
         </div>
-        {/* <ul>list of task:
-            {taskArray.map((item,index)=>(
-                <li key={index}>TaskName:{item.name} Description:{item.des} isCompleted:{item.iscomplete}</li>
-               
-               
-            ))}
-        </ul> */}
-        
+    
        
          
            
     </div>
   )
 }
+
 
 export default Form

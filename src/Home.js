@@ -6,29 +6,31 @@ const Home = () => {
 
     
     const taskArray = JSON.parse(localStorage.getItem('taskArray'));
+    // localStorage.removeItem('taskArray')
+    console.log(taskArray)
 
     
-    const [items, setItems] = useState(taskArray)
+    // const [items, setItems] = useState(taskArray)
 
-    const removeItem = (id) => {
-        // const updatedItems = items.filter((item) => item.id !== id);
-        // setItems(updatedItems);
-        setItems(items.filter((item)=>item.id != id))
-        console.log(items)
-        alert("delete")
-        // let finddata = items.find(function(item){
-        //     return item.id === id;
-        //  })
-        //  if(finddata){
-        //     let updateobject = items.filter(function(item){
-        //         return item.id !== id;
+    // const removeItem = (id) => {
+    //     // const updatedItems = items.filter((item) => item.id !== id);
+    //     // setItems(updatedItems);
+    //     setItems(()=>items.filter((item)=>item.id != id))
+    //     console.log(setItems)
+      
+    //     // let finddata = items.find(function(item){
+    //     //     return item.id === id;
+    //     //  })
+    //     //  if(finddata){
+    //     //     let updateobject = items.filter(function(item){
+    //     //         return item.id !== id;
     
-        //     });
-        //     setItems(updateobject);
-        //     console.log(items)
+    //     //     });
+    //     //     setItems(updateobject);
+    //     //     console.log(items)
             
-        //  }
-      };
+    //     //  }
+    //   };
 
     //go to form function
     let navigate=useNavigate();
@@ -58,7 +60,7 @@ const Home = () => {
                 <td>{item.des}</td>
                 <td>{item.iscomplete}</td>
                 <td><button>Edit</button></td>
-                <td><button onClick={() => removeItem(item.id)}>Delete</button></td>
+                <td><button>Delete</button></td>
             </tr>))  } 
             </tbody>
            
