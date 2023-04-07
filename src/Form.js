@@ -8,7 +8,9 @@ const Form = () => {
     const[completed,setCompleted]=useState();
     const[taskArray,setArray]=useState([]);
     const[errorShow,setError]=useState(false);
-   
+    // const [formValues, setFormValues] = useState(selectedData || {});
+    // console.log(props.edit)
+
 
     const getTaskname=(e)=>{
         console.log("tasktname",e.target.value)
@@ -66,10 +68,10 @@ const Form = () => {
             <input type="text" placeholder="Taskname"  onChange={getTaskname}/><br/>
             {taskName === "" && errorShow &&<p>Task name is required</p>}
             <label >Description:</label>
-            <input type="text" placeholder="description"  onChange={getDesvalue}/><br/>
+            <input type="text" placeholder="description" onChange={getDesvalue}/><br/>
             {description === ""&& errorShow &&<p>Description is required</p>}
             <label >isCompleted:</label>
-            <input type="checkbox" onChange={getCompleted}/>
+            <input type="checkbox"  onChange={getCompleted}/>
             <input type="submit"/>
         </form>
         <div>

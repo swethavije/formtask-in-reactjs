@@ -10,7 +10,8 @@ const Routing = () => {
     <Routes>
         <Route path="/" element={<Login/>}></Route>
         <Route path="/Home" element={<Home/>}></Route>
-        <Route path="/Form" element={<Form/>}></Route>
+        <Route path="/Form" element={<Form />}></Route>
+        {/* <Route path="/edit" render={() => <Form selectedData={editData} />} /> */}
     </Routes>
     </BrowserRouter>
   )

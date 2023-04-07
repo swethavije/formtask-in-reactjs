@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
@@ -10,33 +10,36 @@ const Home = () => {
     console.log(taskArray)
 
     
-    // const [items, setItems] = useState(taskArray)
+    const [items, setItems] = useState(taskArray)
+    const[editData,setEdit]=useState(null)
 
-    // const removeItem = (id) => {
-    //     // const updatedItems = items.filter((item) => item.id !== id);
-    //     // setItems(updatedItems);
-    //     setItems(()=>items.filter((item)=>item.id != id))
-    //     console.log(setItems)
-      
-    //     // let finddata = items.find(function(item){
-    //     //     return item.id === id;
-    //     //  })
-    //     //  if(finddata){
-    //     //     let updateobject = items.filter(function(item){
-    //     //         return item.id !== id;
+    const removeItem = (id) => {
+        setItems(()=>items.filter((item,index)=>index != id))
+        console.log(items)
+
+      };
+      localStorage.setItem('taskArray', JSON.stringify(items));
+    const editItem = (editobj)=>{
+        console.log(editobj)
+        setEdit(editobj)
+       if(editData !== null){
+       gotoForm(); 
+       }else{
+        return
+       }
+          console.log(editData)
+    }
     
-    //     //     });
-    //     //     setItems(updateobject);
-    //     //     console.log(items)
-            
-    //     //  }
-    //   };
 
     //go to form function
     let navigate=useNavigate();
     const gotoForm=()=>{
        navigate("/Form")
     }
+    // let navie=useNavigate();
+    // const gotoEdit=()=>{
+    //    navie("/edit")
+    // }
 
   return (
     <div>list Of task:
@@ -44,7 +47,7 @@ const Home = () => {
         <table border="1">
             <thead>
             <tr>
-                {/* <th>Id</th> */}
+                <th>Id</th>
                 <th>TaskName</th>
                 <th>Description</th>
                 <th>IsCompleted</th>
@@ -54,13 +57,15 @@ const Home = () => {
             </thead>
             <tbody>
            
-        {taskArray.map((item)=>( <tr key={item.id}>
-             {/* <td>{item.id}</td> */}
+        {items.map((item,index)=>( <tr key={index}>
+             <td>{index+1}</td>
                 <td >{item.name}</td>
                 <td>{item.des}</td>
                 <td>{item.iscomplete}</td>
-                <td><button>Edit</button></td>
-                <td><button>Delete</button></td>
+                {/* <td><button onClick={()=>editItem(item)}>Edit</button></td> */}
+               <td> <Link to={`/Form/${editData.name}`}>Edit</Link></td>
+                <td><button onClick={()=>removeItem(index)}>Delete</button></td>
+               
             </tr>))  } 
             </tbody>
            
