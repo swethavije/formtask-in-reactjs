@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, json, useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
@@ -23,7 +23,8 @@ const Home = () => {
         console.log(editobj)
         setEdit(editobj)
        if(editData !== null){
-       gotoForm(); 
+        localStorage.setItem("edit",JSON.stringify(editData))
+       gotoForm(editData); 
        }else{
         return
        }
@@ -62,8 +63,8 @@ const Home = () => {
                 <td >{item.name}</td>
                 <td>{item.des}</td>
                 <td>{item.iscomplete}</td>
-                {/* <td><button onClick={()=>editItem(item)}>Edit</button></td> */}
-               <td> <Link to={`/Form/${editData.name}`}>Edit</Link></td>
+                <td><button onClick={()=>editItem(item)}>Edit</button></td>
+               {/* <td> <Link to={`/Form/${editData.name}`}>Edit</Link></td> */}
                 <td><button onClick={()=>removeItem(index)}>Delete</button></td>
                
             </tr>))  } 
