@@ -11,7 +11,7 @@ const Home = () => {
 
     
     const [items, setItems] = useState(taskArray)
-    const[editData,setEdit]=useState(null)
+    // const[editData,setEdit]=useState(null)
 
     const removeItem = (id) => {
         setItems(()=>items.filter((item,index)=>index != id))
@@ -19,17 +19,25 @@ const Home = () => {
 
       };
       localStorage.setItem('taskArray', JSON.stringify(items));
-    const editItem = (editobj)=>{
-        console.log(editobj)
-        setEdit(editobj)
-       if(editData !== null){
-        localStorage.setItem("edit",JSON.stringify(editData))
-       gotoForm(editData); 
-       }else{
-        return
-       }
-          console.log(editData)
+    // const editItem = (editobj)=>{
+    //     console.log(editobj)
+    //     setEdit(editobj)
+    //    if(editData !== null){
+    //     localStorage.setItem("edit",JSON.stringify(editData))
+    //    gotoForm(editData); 
+    //    }else{
+    //     return
+    //    }
+    // // }
+    // const editItem =(obj)=>{
+       
+    //     localStorage.setItem("edit",JSON.stringify(obj))
+    //     gotoForm();
+    //  }
+    const editItem =(obj)=>{
+        navigate(`/Form?name=${obj.name}`)
     }
+    
     
 
     //go to form function
@@ -58,7 +66,7 @@ const Home = () => {
             </thead>
             <tbody>
            
-        {items.map((item,index)=>( <tr key={index}>
+        {items?.map((item,index)=>( <tr key={index}>
              <td>{index+1}</td>
                 <td >{item.name}</td>
                 <td>{item.des}</td>
