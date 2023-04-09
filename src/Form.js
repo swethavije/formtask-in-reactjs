@@ -11,8 +11,8 @@ const Form = () => {
     const[taskArray,setArray]=useState(JSON.parse(localStorage.getItem('taskArray'))||[]);
     const[errorShow,setError]=useState(false);
   
-    useEffect(()=>{
-      if(params.get("name")!==undefined){
+ useEffect(()=>{
+      if(params.get("name")!=null){
         const tem=JSON.parse(localStorage.getItem('taskArray'));
         console.log(tem)
         const edi=tem.find((item)=>item.name === params.get("name"));
@@ -51,9 +51,9 @@ const Form = () => {
         if(taskName==="" || description==="")return;
        
         console.log(taskName,description,completed)
-        const arrVal={name:taskName,des:description,iscomplete:completed}
-        setArray([...taskArray, arrVal]);
-        console.log(taskArray)
+        // const arrVal={name:taskName,des:description,iscomplete:completed}
+        // setArray([...taskArray, arrVal]);
+        // console.log(taskArray)
     //    const data=JSON.parse(localStorage.getItem('taskArray'))
     //    if(data===null||undefined){
     //     localStorage.setItem("taskArray",JSON.stringify(taskArray))
@@ -63,16 +63,19 @@ const Form = () => {
     //    }
         if(params.get("name")==null){
             const arrVal={name:taskName,des:description,iscomplete:completed}
+            console.log(arrVal)
             setArray([...taskArray, arrVal]);
-            // console.log(taskArray)
+           
         }else{
-            const newState =taskArray.map(obj=>{
+            const editObj =taskArray.map(obj=>{
                 if(obj.name === params.get("name")){
                     return {name:taskName,des:description,iscomplete:completed};
                 }
                 return obj;
             });
-            setArray(newState);
+            console.log(editObj)
+            setArray(editObj);
+            
         }
   
        
