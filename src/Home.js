@@ -1,16 +1,17 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link, json, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
     
-    const taskArray = JSON.parse(localStorage.getItem('taskArray'));
+    // const taskArray = JSON.parse(localStorage.getItem('taskArray'));
     // localStorage.removeItem('taskArray')
-    console.log(taskArray)
-
+    // console.log(taskArray)
+    const {state,dispatch}=useContext(stateContext)
+    console.log("state",state)
     
-    const [items, setItems] = useState(taskArray)
+    const [items, setItems] = useState(state.taskArray)
     // const[editData,setEdit]=useState(null)
 
     const removeItem = (id) => {

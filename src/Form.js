@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { stateContext } from './Context';
 
 const Form = () => {
     
+    const {state,dispatch}=useContext(stateContext)
+    console.log("state",state)
     const[params]=useSearchParams()
     console.log(params.get("name"))
     const[taskName,setTaskname]=useState("");
     const[description,setDescription]=useState("");
     const[completed,setCompleted]=useState("");
-    const[taskArray,setArray]=useState(JSON.parse(localStorage.getItem('taskArray'))||[]);
+    // const[taskArray,setArray]=useState(JSON.parse(localStorage.getItem('taskArray'))||[]);
     const[errorShow,setError]=useState(false);
   
  useEffect(()=>{
@@ -62,20 +65,22 @@ const Form = () => {
     //     localStorage.setItem("taskArray",JSON.stringify(temp))
     //    }
         if(params.get("name")==null){
-            const arrVal={name:taskName,des:description,iscomplete:completed}
-            console.log(arrVal)
-            setArray([...taskArray, arrVal]);
-           
+            // const arrVal={name:taskName,des:description,iscomplete:completed}
+            // console.log(arrVal)
+            // setArray([...taskArray, arrVal]);
+            dispatch({type:"FORM",payload:[...state.taskArray,{name:taskName,des:description,iscomplete:completed}]})
         }else{
-            const editObj =taskArray.map(obj=>{
+            const editObj =state.taskArray.map(obj=>{
                 if(obj.name === params.get("name")){
                     return {name:taskName,des:description,iscomplete:completed};
                 }
                 return obj;
             });
-            console.log(editObj)
-            setArray(editObj);
-            
+            // console.log(editObj)
+            // setArray(editObj);
+            console.log("editObj",editObj)
+           
+            dispatch({type:"FORM",payload:editObj}) 
         }
   
        
@@ -84,7 +89,7 @@ const Form = () => {
     
     
     
-     localStorage.setItem('taskArray', JSON.stringify(taskArray));
+    //  localStorage.setItem('taskArray', JSON.stringify(taskArray));
 
     
    
@@ -114,7 +119,9 @@ const Form = () => {
         <div>
             <button onClick={()=>gotohome()}>HOME</button>
         </div>
-    
+        <div>
+        <button onClick={()=>dispatch({type:"FORM",payload:[{name:taskName,des:description,iscomplete:completed}]})}>ADD</button>
+        </div>
        
          
            
