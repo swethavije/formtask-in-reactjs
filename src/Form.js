@@ -4,7 +4,7 @@ import { stateContext } from './Context';
 
 const Form = () => {
     
-    const {state,dispatch}=useContext(stateContext)
+    const {state,dispatch}=useContext(stateContext);
     console.log("state",state)
     const[params]=useSearchParams()
     console.log(params.get("name"))
