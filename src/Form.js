@@ -119,9 +119,9 @@ const Form = () => {
         <div>
             <button onClick={()=>gotohome()}>HOME</button>
         </div>
-        <div>
+        {/* <div>
         <button onClick={()=>dispatch({type:"FORM",payload:[{name:taskName,des:description,iscomplete:completed}]})}>ADD</button>
-        </div>
+        </div> */}
        
          
            
